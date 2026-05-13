@@ -1,216 +1,226 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donor CRM — User Guide</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nonprofit Donor CRM — User Guide</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#1B3A5C;--teal:#2563EB;--gold:#D4A017;--bg:#f0f4f8;--white:#fff;--border:#e2e8f0;--text:#1a1a2e;--muted:#64748b;--light:#f8fafc;--red:#c0392b;--green:#2d7a4f}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-a{color:var(--teal);text-decoration:none}
-a:hover{text-decoration:underline}
-.topbar{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-.topbar .mark{width:34px;height:34px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px}
-.topbar .title{font-size:15px;font-weight:700;flex:1}
-.topbar .title span{font-size:11px;font-weight:400;color:rgba(255,255,255,.6);display:block;line-height:1.2}
-.topbar a{color:#fff;font-size:13px;padding:8px 14px;border:1px solid rgba(255,255,255,.25);border-radius:8px;font-weight:600;background:rgba(255,255,255,.06)}
-.topbar a:hover{background:rgba(255,255,255,.12);text-decoration:none}
-.layout{display:grid;grid-template-columns:240px 1fr;max-width:1200px;margin:0 auto;gap:28px;padding:28px 24px 60px}
-.toc{position:sticky;top:78px;align-self:start;background:var(--navy);border:1px solid var(--navy);border-radius:14px;padding:18px;max-height:calc(100vh - 100px);overflow-y:auto;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.toc-title{font-size:11px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
-.toc a{display:block;padding:7px 10px;font-size:13px;color:rgba(255,255,255,.82);border-radius:6px;font-weight:500;margin-bottom:2px}
-.toc a:hover{background:rgba(255,255,255,.08);color:#fff;text-decoration:none}
-.toc a.active{background:var(--teal);color:#fff;font-weight:600}
-.main{background:#fff;border:1px solid var(--border);border-radius:14px;padding:40px}
-.hero{background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff;padding:32px;border-radius:14px;margin-bottom:28px}
-.hero h1{font-size:30px;font-weight:700;margin-bottom:8px}
-.hero p{font-size:15px;opacity:.92}
-h2{font-size:24px;color:var(--navy);margin:36px 0 12px;font-weight:700;scroll-margin-top:80px}
-h2:first-of-type{margin-top:0}
-h3{font-size:17px;color:var(--navy);margin:22px 0 8px;font-weight:700}
-p{margin-bottom:12px}
-ul,ol{margin:0 0 14px 22px}
-li{margin-bottom:6px}
-.callout{background:var(--light);border-left:4px solid var(--teal);padding:14px 18px;border-radius:8px;margin:14px 0;font-size:14px}
-.callout.warn{background:#fff7d6;border-color:var(--gold);color:#5c4400}
-code{background:var(--light);padding:1px 6px;border-radius:4px;font-family:'Courier New',monospace;font-size:13px;color:var(--navy);border:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
-th{background:var(--light);color:var(--navy);font-weight:700}
-@media(max-width:900px){.layout{grid-template-columns:1fr;gap:14px;padding:18px 14px 40px}.toc{position:static;max-height:none;order:2}.main{padding:22px;order:1}.hero{padding:22px}.hero h1{font-size:22px}}
-</style></head><body>
-<div class="topbar"><div class="mark">B</div><div class="title">Build Your Club Academy<span>Donor CRM — User Guide</span></div><a href="/">← Back to App</a></div>
+  :root {
+    --navy:#1B3A5C;--teal:#0F766E;--gold:#D4A843;--light:#EFF4FA;--mid:#C8D8EA;
+    --dark:#1E293B;--muted:#64748B;--bg:#F8FAFC;--card:#FFFFFF;--radius:10px;
+    --green:#15803D;--green-bg:#DCFCE7;--amber:#B45309;--amber-bg:#FEF3C7;
+    --red:#DC2626;--red-bg:#FEE2E2;--purple:#7C3AED;--purple-bg:#F5F3FF;
+    --blue:#2563EB;--blue-bg:#EFF6FF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--dark);line-height:1.7;font-size:15px}
+  .layout{display:flex;min-height:100vh}
+  .sidebar{width:265px;min-width:265px;background:var(--navy);color:#fff;position:sticky;top:0;height:100vh;overflow-y:auto;padding:0 0 32px;flex-shrink:0}
+  .sidebar-brand{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:10px}
+  .sidebar-brand .logo{font-size:18px;font-weight:800;color:var(--gold)}
+  .sidebar-brand .sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;line-height:1.4}
+  .toc-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.32);padding:10px 20px 4px}
+  .toc a{display:block;padding:7px 20px;color:rgba(255,255,255,.68);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:all .15s}
+  .toc a:hover,.toc a.active{color:#fff;background:rgba(255,255,255,.08);border-left-color:var(--gold)}
+  .toc a.sub{padding-left:34px;font-size:12px;color:rgba(255,255,255,.46)}
+  .toc a.sub:hover{color:rgba(255,255,255,.82)}
+  .toc-sep{border-top:1px solid rgba(255,255,255,.1);margin:10px 0}
+  .main{flex:1;min-width:0;padding:48px 56px;max-width:900px}
+  @media(max-width:820px){.sidebar{display:none}.main{padding:24px 18px}}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,#1e4d8c 100%);border-radius:var(--radius);padding:40px 44px;color:#fff;margin-bottom:48px}
+  .hero-eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:10px;font-weight:600}
+  .hero h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:10px}
+  .hero p{color:rgba(255,255,255,.78);font-size:15px;max-width:580px;line-height:1.65}
+  .hero-badges{display:flex;gap:.6rem;margin-top:18px;flex-wrap:wrap}
+  .hero-badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:#fff}
+  .section{margin-bottom:60px}
+  h2{font-size:22px;font-weight:700;color:var(--navy);padding-bottom:10px;border-bottom:2px solid var(--mid);margin-bottom:22px;scroll-margin-top:24px}
+  h3{font-size:16px;font-weight:700;color:var(--teal);margin:26px 0 10px}
+  h4{font-size:14px;font-weight:700;color:var(--navy);margin:16px 0 6px}
+  p{margin-bottom:14px}
+  ul,ol{padding-left:22px;margin-bottom:14px}
+  li{margin-bottom:7px}
+  a{color:var(--blue)}
+  strong{color:var(--navy)}
+  .callout{border-left:4px solid var(--gold);background:var(--light);border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin:18px 0}
+  .callout.tip{border-left-color:var(--teal)}
+  .callout.warn{border-left-color:#E87B3B;background:#FFF8F0}
+  .callout.good{border-left-color:var(--green);background:var(--green-bg)}
+  .callout.note{border-left-color:var(--purple);background:var(--purple-bg)}
+  .callout.info{border-left-color:var(--blue);background:var(--blue-bg)}
+  .callout-head{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px}
+  .callout p{margin-bottom:6px;font-size:14px}
+  .callout p:last-child{margin-bottom:0}
+  .tbl-wrap{overflow-x:auto;margin:16px 0 24px;border-radius:var(--radius);border:1px solid var(--mid)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{background:var(--navy);color:#fff;text-align:left;padding:10px 14px;font-weight:600;font-size:13px}
+  td{padding:10px 14px;border-bottom:1px solid var(--mid);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:nth-child(even) td{background:var(--light)}
+  .pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700}
+  .pill.green{background:var(--green-bg);color:var(--green)}
+  .pill.blue{background:var(--blue-bg);color:var(--blue)}
+  .pill.purple{background:var(--purple-bg);color:var(--purple)}
+  .pill.gold{background:#FEF3C7;color:#92400E}
+  .back-top{display:inline-block;font-size:12px;color:var(--muted);text-decoration:none;margin-top:32px;padding:6px 14px;border:1px solid var(--mid);border-radius:20px}
+  .back-top:hover{color:var(--navy);border-color:var(--navy)}
+  @media print{.sidebar{display:none}.main{padding:24px}}
+</style>
+</head>
+<body>
 <div class="layout">
-<aside class="toc">
-<div class="toc-title">In This Guide</div>
-<a href="#what">What is this tool?</a>
-<a href="#start">Getting started</a>
-<a href="#workflow">Weekly workflow</a>
-<a href="#directory">Donor Directory</a>
-<a href="#pipeline">Major Donor Pipeline</a>
-<a href="#gifts">Gifts</a>
-<a href="#pledges">Pledges</a>
-<a href="#recurring">Recurring Giving</a>
-<a href="#appeals">Appeals</a>
-<a href="#comms">Communications</a>
-<a href="#stewardship">Stewardship</a>
-<a href="#acks">Tax Acknowledgments</a>
-<a href="#reports">Reports</a>
-<a href="#build">Build Annual Report</a>
-<a href="#cross">Cross-app integration</a>
-<a href="#legal">Legal & compliance notes</a>
-<a href="#disclaimer">Disclaimer</a>
-</aside>
-<article class="main">
-<div class="hero"><h1>Donor CRM</h1><p>Stop tracking donors in spreadsheets. Manage relationships from first gift through major-donor cultivation — directory, gifts, pledges, recurring giving, appeals, stewardship plans, IRS-compliant acknowledgments, and a polished annual donor report.</p></div>
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo">Build Your Club</div>
+    <div class="sub">Nonprofit Donor CRM<br>User Guide</div>
+  </div>
+  <div class="toc-label">Contents</div>
+  <div class="toc">
+    <a href="#about">1. About This Tool</a>
+    <a href="#start">2. Getting Started</a>
+    <a href="#directory">3. Donor Directory &amp; Pipeline</a>
+    <a href="#gifts">4. Gifts, Pledges &amp; Recurring Giving</a>
+    <a href="#stewardship">5. Stewardship &amp; Communications</a>
+    <a href="#acks">6. Tax Acknowledgments</a>
+    <a href="#reports">7. Reports &amp; Annual Donor Report</a>
+    <div class="toc-sep"></div>
+    <a href="#contact">Contact &amp; Support</a>
+  </div>
+</nav>
 
-<h2 id="what">What is this tool?</h2>
-<p>A working donor management platform for nonprofits with anywhere from 25 to 5,000 active donors. It handles every step of the donor relationship — from logging a first gift to running a five-year capital campaign pledge to filing Form 990 Schedule B at year end.</p>
-<p>Most small nonprofits track donors in a spreadsheet that ages out the moment a key staff or board member leaves. The institutional memory walks out the door: who attended the gala, who pledged five years and is now in year three, who asked about planned giving, why a foundation gave restricted to one program. This tool is the boring infrastructure that protects all of it.</p>
-<div class="callout"><b>The cardinal rule:</b> Every meaningful interaction gets logged. Not the spam emails — the real conversations. If a board member runs into a donor at the grocery store and learns their daughter just graduated, that goes in here. That's how relationships compound.</div>
+<main class="main" id="top">
+  <div class="hero">
+    <div class="hero-eyebrow">Build Your Club · User Guide</div>
+    <h1>Nonprofit Donor CRM<br>User Guide</h1>
+    <p>Stop tracking donors in spreadsheets. Manage relationships from first gift through major-donor cultivation — directory, gifts, pledges, recurring giving, appeals, stewardship plans, IRS-compliant acknowledgments, and a polished annual donor report.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">Unlimited Donors</span>
+      <span class="hero-badge">Gift History</span>
+      <span class="hero-badge">LYBUNT/SYBUNT</span>
+      <span class="hero-badge">Tax Letters</span>
+      <span class="hero-badge">Annual Report</span>
+    </div>
+  </div>
 
-<h2 id="start">Getting started</h2>
-<ol>
-<li>Sign up or sign in. Demo: <code>demo@example.org</code> / <code>demo</code> — fully populated with 6 donors, 11 gifts, an active pledge, a recurring sustainer, 3 appeals, communications, and a sample stewardship plan.</li>
-<li>In Settings, set your EIN, mailing address, and signatory — these flow into every acknowledgment letter.</li>
-<li>Enter your top 25 donors first. Don't try to migrate everyone at once.</li>
-<li>Tag donors as you enter them (Major Donor, Board Member, Monthly Donor, etc.). Tags drive segmentation and reports.</li>
-<li>Define your current Appeals. Each gift gets tagged to one — that's what lets you measure campaign performance.</li>
-<li>Log this year's gifts from each donor. Gift history drives LYBUNT, retention, tier breakdowns.</li>
-<li>Start a stewardship plan for your top 5 donors. Click <b>+ Seed standard 7-touch plan</b> for an instant template.</li>
-</ol>
+  <div class="section" id="about">
+    <h2>1. About This Tool</h2>
+    
+    <p>A working donor management platform for nonprofits with anywhere from 25 to 5,000 active donors. It handles every step of the donor relationship — from logging a first gift to running a five-year capital campaign pledge to filing Form 990 Schedule B at year end.</p>
+    <p>Most small nonprofits track donors in a spreadsheet that ages out the moment a key staff or board member leaves. The institutional memory walks out the door: who attended the gala, who pledged five years and is now in year three, who asked about planned giving, why a foundation gave restricted to one program. This tool is the boring infrastructure that protects all of it.</p>
+    <div class="callout tip">
+      <div class="callout-head">The cardinal rule</div>
+      <p>Every meaningful interaction gets logged. Not the spam emails — the real conversations. If a board member runs into a donor at the grocery store and learns their daughter just graduated, that goes in here. That's how relationships compound.</p>
+    </div>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
 
-<h2 id="workflow">Recommended weekly workflow</h2>
-<ol>
-<li><b>Monday — Gift log.</b> Enter all gifts received last week. Mark which need acknowledgment.</li>
-<li><b>Monday — Thank-you letters.</b> In Tax Acknowledgments, generate .docx letters for every unacked gift. Mail same day.</li>
-<li><b>Tuesday — Communications.</b> Log meaningful donor conversations from the week (calls, lunches, emails, hallway chats).</li>
-<li><b>Wednesday — Stewardship review.</b> Check upcoming touchpoints on the dashboard. Make the calls and write the notes today.</li>
-<li><b>Thursday — Pipeline review.</b> Spend 30 minutes on the kanban. Who's ready to move stages? Who's stuck?</li>
-<li><b>Friday — Follow-ups.</b> Clear or reschedule each "Follow-ups due" item on the dashboard.</li>
-</ol>
-<div class="callout"><b>If you do nothing else, do Monday.</b> Acknowledging gifts within a week is the single biggest retention lever in fundraising research.</div>
+  <div class="section" id="start">
+    <h2>2. Getting Started</h2>
+    
+    <p>Demo credentials: <strong>demo@example.org</strong> / <strong>demo</strong> — fully populated with 6 donors, 11 gifts, an active pledge, recurring sustainer, 3 appeals, communications, and a sample stewardship plan.</p>
+    <h3>Your first 30 minutes</h3>
+    <ol>
+      <li>In Settings, set your EIN, mailing address, and signatory — these flow into every acknowledgment letter.</li>
+      <li>Enter your top 25 donors first. Don't try to migrate everyone at once.</li>
+      <li>Tag donors as you enter them (Major Donor, Board Member, Monthly Donor, etc.). Tags drive segmentation and reports.</li>
+      <li>Define your current appeals. Each gift gets tagged to one — that's what lets you measure campaign performance.</li>
+      <li>Log this year's gifts. Gift history drives LYBUNT, retention, tier breakdowns.</li>
+      <li>Start a stewardship plan for your top 5 donors. Click <strong>+ Seed standard 7-touch plan</strong> for an instant template.</li>
+    </ol>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
 
-<h2 id="directory">Donor Directory</h2>
-<p>The roster of every individual, family, foundation, and corporate donor. Each profile captures contact info, donor type, segmentation tags, spouse/partner, interests, notes, DNS (Do Not Solicit) flag, pipeline stage, and computed lifetime giving. Click any donor row for the full detail page with embedded gift history, pledges, recurring giving, communications log, and stewardship plan.</p>
+  <div class="section" id="directory">
+    <h2>3. Donor Directory &amp; Pipeline</h2>
+    
+    <p>The roster of every individual, family, foundation, and corporate donor. Each profile captures contact info, donor type, segmentation tags, spouse/partner, interests, notes, DNS (Do Not Solicit) flag, pipeline stage, and computed lifetime giving.</p>
+    <h3>Major Donor Pipeline (Moves Management)</h3>
+    <p>A kanban for prospects you're actively cultivating toward a major gift ask. <strong>Not</strong> for every donor in your file — only those for whom you're making moves toward a specific solicitation.</p>
+    <div class="tbl-wrap"><table>
+      <tr><th>Stage</th><th>Goal</th><th>Typical duration</th></tr>
+      <tr><td>Identification</td><td>Confirm capacity and mission connection</td><td>1–3 months</td></tr>
+      <tr><td>Qualification</td><td>Capacity and interest confirmed</td><td>1–3 months</td></tr>
+      <tr><td>Cultivation</td><td>Building the relationship</td><td>6–18 months</td></tr>
+      <tr><td>Solicitation</td><td>Ask is being prepared or made</td><td>1–3 months</td></tr>
+      <tr><td>Stewardship</td><td>Gift received; building toward the next</td><td>Ongoing</td></tr>
+    </table></div>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
 
-<h3>Segmentation tags</h3>
-<p>Tags are multi-select. The same donor can be tagged Major Donor + Board Member + Volunteer. Common tags include Major Donor, Monthly Donor, Lapsed, Board Member, Foundation, Corporate, Planned Giving Prospect, Anonymous, and DNS. Tags drive filtering in the directory and segmentation in reports.</p>
+  <div class="section" id="gifts">
+    <h2>4. Gifts, Pledges &amp; Recurring Giving</h2>
+    
+    <h3>Gifts</h3>
+    <p>Every recorded transaction. Captures donor, date, amount, payment method, appeal, designation, acknowledgment status, and notes. Gifts roll up into the donor's lifetime total and feed every report.</p>
+    <h3>Pledges vs. Recurring Giving</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Pledge</th><th>Recurring Gift</th></tr>
+      <tr><td>A signed commitment to give a defined total over a fixed timeframe — capital campaigns, multi-year major gifts.</td><td>An open-ended monthly/quarterly/annual auto-renewing gift — the "sustainer" model.</td></tr>
+    </table></div>
+    <h3>Appeals</h3>
+    <p>Your fundraising campaigns. Define each appeal (Annual Fund, Year-End, Gala, Capital Campaign, etc.) with type, dates, goal, and status. Goal-vs-raised progress bars update live as gifts come in.</p>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
 
-<h2 id="pipeline">Major Donor Pipeline (Moves Management)</h2>
-<p>A kanban for prospects you're actively cultivating toward a major gift ask. <b>Not</b> for every donor in your file — only those for whom you're making moves toward a specific solicitation.</p>
-<table>
-<tr><th>Stage</th><th>Goal</th><th>Typical duration</th></tr>
-<tr><td>Identification</td><td>Confirm capacity and mission connection</td><td>1–3 months</td></tr>
-<tr><td>Qualification</td><td>Capacity and interest confirmed; they're responsive</td><td>1–3 months</td></tr>
-<tr><td>Cultivation</td><td>Building the relationship through substantive touchpoints</td><td>6–18 months</td></tr>
-<tr><td>Solicitation</td><td>Ask is being prepared or made; awaiting decision</td><td>1–3 months</td></tr>
-<tr><td>Stewardship</td><td>Gift received; building toward the next gift</td><td>Ongoing</td></tr>
-<tr><td>Paused</td><td>Stepped back temporarily; re-engage later</td><td>Variable</td></tr>
-</table>
-<div class="callout"><b>The 1-2-3 rule.</b> Most experienced fundraisers say it takes 1 great meeting, 2 substantive follow-ups, and 3 months minimum from Qualification to a successful Solicitation. Don't rush.</div>
+  <div class="section" id="stewardship">
+    <h2>5. Stewardship &amp; Communications</h2>
+    
+    <p>Log every meaningful donor touchpoint — calls, lunches, emails, in-person conversations. Best practice for any donor giving $1,000+: a formal stewardship plan with at least seven non-solicitation touchpoints per year.</p>
+    <h3>The standard 7-touch plan</h3>
+    <ol>
+      <li>Thank-you call within 48 hours of a gift (ED, not staff)</li>
+      <li>Handwritten note from a board member or beneficiary</li>
+      <li>Mid-year impact update (1 page, specific outcomes, no ask)</li>
+      <li>Site visit or program experience</li>
+      <li>Annual report mailed with personalized cover letter</li>
+      <li>Birthday or anniversary card</li>
+      <li>Year-end thank-you (separate from year-end appeal)</li>
+    </ol>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
 
-<h2 id="gifts">Gifts</h2>
-<p>Every recorded transaction. Captures donor, date, amount, payment method (Check, Credit Card, Stock, DAF, IRA QCD, In-Kind, etc.), appeal, designation, acknowledgment status, and notes. Gifts automatically roll up into the donor's lifetime total, drive tier calculations, and feed every report.</p>
-<p><b>Designation matters.</b> "Unrestricted" is best for the organization. "Restricted - [purpose]" legally obligates you to spend that money on that purpose only. Track carefully and reconcile annually.</p>
+  <div class="section" id="acks">
+    <h2>6. Tax Acknowledgments</h2>
+    
+    <p>The IRS requires a contemporaneous written acknowledgment for any single contribution of $250 or more. Best practice is to thank every gift, regardless of size.</p>
+    <h3>Required elements (IRS Pub 1771)</h3>
+    <ul>
+      <li>Name of the organization</li>
+      <li>Amount of cash contribution OR description (not value) of non-cash contribution</li>
+      <li>Statement on goods/services provided (or "no goods or services")</li>
+      <li>Tax-deductibility statement</li>
+      <li>Organization's EIN (recommended)</li>
+    </ul>
+    <div class="callout warn">
+      <div class="callout-head">Quid pro quo gifts (gala tickets, auction items)</div>
+      <p>You MUST disclose the fair market value of goods/services exchanged. The deductible portion is the gift amount minus the FMV.</p>
+    </div>
+    <p>The Tax Acknowledgments page generates compliant letters from your boilerplate. Preview as HTML or download Word .docx. Bulk action generates ALL pending acknowledgments in one document.</p>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
 
-<h2 id="pledges">Pledges</h2>
-<p>A signed commitment to give a defined total over a fixed timeframe — capital campaign pledges, multi-year major gifts. Captures total amount, start/end date, frequency (annual/quarterly/monthly), installment size, remaining balance, signed-agreement flag, and notes. Progress bar shows paid vs. outstanding.</p>
+  <div class="section" id="reports">
+    <h2>7. Reports &amp; Annual Donor Report</h2>
+    
+    <h3>LYBUNT &amp; SYBUNT</h3>
+    <p><strong>LYBUNT</strong> (Last Year But Unfortunately Not This year) — donors who gave last year but haven't given this year. Your highest-value reactivation targets.</p>
+    <p><strong>SYBUNT</strong> (Some Year But Unfortunately Not This year) — donors who gave in earlier years but neither last year nor this year.</p>
+    <h3>Retention rate</h3>
+    <p>The percentage of last year's donors who gave again this year. Industry benchmark for small orgs is around <strong>45%</strong>. Above 60% is excellent.</p>
+    <h3>Form 990 Schedule B</h3>
+    <p>Donors over $5,000 in a year must typically be disclosed on Schedule B of Form 990. The Reports page surfaces this list automatically.</p>
+    <h3>Build Annual Donor Report</h3>
+    <p>Generates a polished, board-ready report (HTML preview + .docx download) with executive summary, top donors, appeal performance, donor composition, retention narrative, and year-ahead goals.</p>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
 
-<h2 id="recurring">Recurring Giving</h2>
-<p>Open-ended monthly/quarterly/annual auto-renewing gifts — the "sustainer" or "monthly donor" model. Different from a pledge: no defined end, no signed total commitment. Captures amount, frequency, start date, status (active/paused/cancelled), and method. The page surfaces predictable monthly revenue at a glance.</p>
-<div class="callout">Each actual transaction should also be logged as a Gift when it processes. This page tracks the <i>commitment</i>; the Gifts page tracks the <i>transactions</i>.</div>
+  <div class="section" id="contact">
+    <h2>Contact &amp; Support</h2>
+    <p>For questions, feedback, or feature requests, contact the Build Your Club Academy team at <a href="mailto:skycopatc@yahoo.com">skycopatc@yahoo.com</a>. We update these tools regularly — check back for new features.</p>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
 
-<h2 id="appeals">Appeals</h2>
-<p>Your fundraising campaigns. Define each appeal (Annual Fund, Spring Gala, Year-End, Capital Campaign, Giving Tuesday, etc.) with type, dates, goal, and status. Each gift is tagged to an appeal so you can measure performance. Goal-vs-raised progress bars and gift counts update live.</p>
-<p>💡 Appeals defined here appear in the Gift entry dropdown and roll up to your overall fundraising strategy in the <a href="https://fundraising.buildyourclubacademy.org" target="_blank">Fundraising &amp; Development</a> demo.</p>
-
-<h2 id="comms">Communications</h2>
-<p>Log every meaningful donor touchpoint — calls, lunches, emails, in-person conversations. Captures date, channel, subject, summary, who logged it, and a follow-up next-step with date. The dashboard surfaces all due follow-ups so nothing falls through the cracks.</p>
-
-<h2 id="stewardship">Stewardship Plans</h2>
-<p>A per-donor map of touchpoints to keep top supporters engaged. Best practice: a formal plan for every $1,000+ donor with at least seven non-solicitation touchpoints per year.</p>
-<h3>The standard 7-touch plan</h3>
-<ol>
-<li>Thank-you call within 48 hours of a gift (ED, not a staff member)</li>
-<li>Handwritten note from a board member or beneficiary</li>
-<li>Mid-year impact update (1 page, specific outcomes, no ask)</li>
-<li>Site visit or program experience</li>
-<li>Annual report mailed with personalized cover letter</li>
-<li>Birthday or anniversary card</li>
-<li>Year-end thank-you (separate from the year-end appeal)</li>
-</ol>
-<p>Click <b>+ Seed standard 7-touch plan</b> on any new plan to generate this template, then customize dates and notes.</p>
-
-<h2 id="acks">Tax Acknowledgments</h2>
-<p>The IRS requires a contemporaneous written acknowledgment for any single contribution of $250 or more. Best practice is to thank every gift, regardless of size.</p>
-<h3>Required elements (IRS Pub 1771)</h3>
-<ul>
-<li>Name of the organization</li>
-<li>Amount of cash contribution OR description (but not value) of non-cash contribution</li>
-<li>Statement that no goods or services were provided, OR a description and good-faith estimate of the value of goods/services provided</li>
-<li>Statement that the contribution is tax-deductible to the extent allowed by law</li>
-<li>The org's EIN (recommended)</li>
-</ul>
-<p>The Tax Acknowledgments page generates compliant letters from your boilerplate. Preview as HTML or download Word .docx. The bulk action generates all pending acknowledgments in a single document and auto-marks every gift acknowledged.</p>
-<div class="callout warn"><b>Quid pro quo gifts (gala tickets, auction items).</b> If you provided goods or services in exchange for the gift, you MUST disclose the fair market value of those goods or services. The deductible portion is the gift amount MINUS the FMV. Update boilerplate accordingly for gala-style appeals.</div>
-
-<h2 id="reports">Reports</h2>
-<p>Live computed reports for board, funders, and IRS reporting:</p>
-<h3>LYBUNT — Last Year But Unfortunately Not This year</h3>
-<p>Donors who gave last year but haven't yet given this year. <b>Your highest-value reactivation targets.</b> Most can be saved with a personal call from the ED or board chair.</p>
-<h3>SYBUNT — Some Year But Unfortunately Not This year</h3>
-<p>Donors who gave in earlier years but neither last year nor this year. Lower hit rate than LYBUNT but worth a focused Q1 reactivation campaign annually.</p>
-<h3>Retention rate</h3>
-<p>The percentage of last year's donors who gave again this year. Industry benchmark for small orgs is around <b>45%</b>. Above 60% is excellent. Below 30% means stewardship is broken.</p>
-<h3>Giving tier breakdown &amp; Form 990 Schedule B</h3>
-<table>
-<tr><th>Tier</th><th>Range</th></tr>
-<tr><td>Friend</td><td>$1 – $99</td></tr>
-<tr><td>Supporter</td><td>$100 – $499</td></tr>
-<tr><td>Sponsor</td><td>$500 – $999</td></tr>
-<tr><td>Patron</td><td>$1,000 – $4,999</td></tr>
-<tr><td>Benefactor</td><td>$5,000 – $9,999</td></tr>
-<tr><td>Leadership</td><td>$10,000 – $24,999</td></tr>
-<tr><td>Visionary</td><td>$25,000 – $99,999</td></tr>
-<tr><td>Founder's Circle</td><td>$100,000+</td></tr>
-</table>
-<p>The Reports page automatically surfaces donors who gave more than $5,000 in the current year — these typically must be disclosed on Schedule B of Form 990 (with redacted names on the public copy).</p>
-
-<h2 id="build">Build Annual Donor Report</h2>
-<p>Generates a polished, board-ready report. Includes:</p>
-<ul>
-<li>Executive summary with year-over-year growth</li>
-<li>KPI dashboard (raised, donors, retention, average gift)</li>
-<li>Top 15 donors by lifetime giving</li>
-<li>Appeal performance: goal vs. raised, % of goal</li>
-<li>Donor composition by type (individual / foundation / corporate / etc.)</li>
-<li>Retention &amp; reactivation narrative (LYBUNT, SYBUNT)</li>
-<li>Stewardship completion rate</li>
-<li>Major donor pipeline outlook</li>
-<li>Year-ahead goals</li>
-</ul>
-<p>Two outputs: HTML preview (print-ready in a browser window) and .docx download (Word format, ready to drop into a board packet).</p>
-
-<h2 id="cross">Cross-app integration</h2>
-<p>The Donor CRM works best when connected to the rest of your Build Your Club Academy suite:</p>
-<table>
-<tr><th>App</th><th>How it connects</th></tr>
-<tr><td><a href="https://fundraising.buildyourclubacademy.org" target="_blank">Fundraising &amp; Development</a></td><td>Define your overall annual fundraising strategy and revenue mix there. Appeals here roll up to those campaigns.</td></tr>
-<tr><td><a href="https://ai.buildyourclubacademy.org" target="_blank">AI Automation</a></td><td>Auto-draft thank-you letters, stewardship update emails, and donor briefs that you can paste into a Communications touchpoint here.</td></tr>
-<tr><td><a href="https://grants.buildyourclubacademy.org" target="_blank">Grant Writing</a></td><td>Foundation funders here are donors. The Grant Writing Funder Library complements the donor directory for institutional givers.</td></tr>
-<tr><td><a href="https://marketing.buildyourclubacademy.org" target="_blank">Marketing</a></td><td>Stewardship plans here mirror the Member Journey map in Marketing. Use Marketing for messaging; Donor CRM for per-donor execution.</td></tr>
-<tr><td><a href="https://committees.buildyourclubacademy.org" target="_blank">Committees</a></td><td>The Development &amp; Fundraising Committee in Committees oversees this work. Review pipeline progress at monthly meetings.</td></tr>
-<tr><td><a href="https://handbook.buildyourclubacademy.org" target="_blank">Board Handbook</a></td><td>Your Gift Acceptance Policy lives in the Board Handbook. Reference it before accepting unusual gifts (stock, crypto, real estate, in-kind).</td></tr>
-<tr><td><a href="https://compliance.buildyourclubacademy.org" target="_blank">Compliance Tracker</a></td><td>Form 990 Schedule B filing dates, state charity registration renewals, and IRS substantiation rules are tracked there.</td></tr>
-<tr><td><a href="https://volunteers.buildyourclubacademy.org" target="_blank">Volunteer Management</a></td><td>Volunteers often become donors and vice versa. Tag volunteer-donors with the "Volunteer" tag here.</td></tr>
-</table>
-
-<h2 id="legal">Legal &amp; compliance notes</h2>
-<p>Things this tool helps you stay on top of but doesn't replace professional guidance for:</p>
-<ul>
-<li><b>IRS substantiation (Pub 1771).</b> Written acknowledgment required for any gift $250+. Letter must be contemporaneous (received before the donor files their return).</li>
-<li><b>Quid pro quo disclosures.</b> Gifts over $75 with goods/services in exchange require disclosure of the FMV of those goods/services in writing.</li>
-<li><b>Restricted gifts.</b> Once you accept a restricted gift, you have a legal obligation to use it for the stated purpose. Track designations carefully and document any donor-approved redirections.</li>
-<li><b>Form 990 Schedule B.</b> Donors over $5,000 in a year must typically be disclosed (with redacted names on the public copy). Confirm filing requirements with your accountant.</li>
-<li><b>State charitable solicitation registration.</b> If you solicit donors in multiple states, most states require you to register. The Compliance Tracker demo flags this.</li>
-<li><b>Data privacy.</b> Donor PII is sensitive. Honor every DNS flag. For production data, you need encrypted backup, role-based permissions, and audit logging — Bloomerang, Little Green Light, Network for Good, and DonorPerfect are common small-shop choices beyond this demo.</li>
-<li><b>Record retention.</b> Gift records
+</main>
+</div>
+</body>
+</html>
