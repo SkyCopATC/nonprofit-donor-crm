@@ -583,7 +583,16 @@ function giftTier(amount){ const a = parseFloat(amount)||0; return GIVING_TIERS.
 // Donors
 function donors(){ const t = teamData(); return t ? t.donors : []; }
 function getDonor(id){ const t = teamData(); if(!t) return null; return t.donors.find(d => d.id === id); }
-function createDonor(){ const t = teamData(); if(!t) return; t.donors.push({ id:newId('d-'), firstName:'', lastName:'', orgName:'', type:'Individual', email:'', phone:'', address:'', city:'', state:'', zip:'', tags:[], spouseName:'', interests:'', notes:'', donotsolicit:false, pipelineStage:'', firstGiftDate:'', lastGiftDate:'', createdAt:new Date().toISOString() }); save(); }
+function createDonor(){ const t = teamData(); if(!t) return; t.donors.push({ id:newId('d-'), firstName:'', lastName:'', orgName:'', type:'Individual', email:'', phone:'', address:'', city:'', state:'', zip:'', tags:[], spouseName:'', interests:'', notes:'', donotsolicit:false, pipelineStage:'', firstGiftDate:'', lastGiftDate:'', photoUrl:'', photoData:'', createdAt:new Date().toISOString() }); save(); }
+
+function uploadDonorPhoto(id, input){
+  const file = input.files[0]; if(!file) return;
+  if (file.size > 500*1024 && !confirm('Image is larger than 500KB. Continue?')) return;
+  const reader = new FileReader();
+  reader.onload = e => { updateDonor(id, { photoData: e.target.result }); renderDonorDetail(id); };
+  reader.readAsDataURL(file);
+}
+
 function updateDonor(id, patch){ const t = teamData(); if(!t) return; const d = t.donors.find(x => x.id === id); if(d){ Object.assign(d, patch); save(); } }
 function deleteDonor(id){ const t = teamData(); if(!t) return; t.donors = t.donors.filter(d => d.id !== id); save(); }
 function toggleDonorTag(id, tag){ const t = teamData(); if(!t) return; const d = t.donors.find(x => x.id === id); if(!d) return; d.tags = d.tags || []; if(d.tags.includes(tag)) d.tags = d.tags.filter(x => x !== tag); else d.tags.push(tag); save(); }
@@ -1516,6 +1525,11 @@ function renderDonorDetail(id){
         <div class="field"><label>Spouse / Partner</label><input value="${escapeHtml(d.spouseName||'')}" onchange="updateDonor('${id}',{spouseName:this.value})"/></div>
         <div class="field"><label style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-weight:600;color:var(--text)"><input type="checkbox" ${d.donotsolicit?'checked':''} onchange="updateDonor('${id}',{donotsolicit:this.checked})"/> Do not solicit (DNS)</label></div>
         <div class="field" style="grid-column:1/-1"><label>Interests / Cause Areas</label><input value="${escapeHtml(d.interests||'')}" onchange="updateDonor('${id}',{interests:this.value})"/></div>
+        <div class="field" style="grid-column:1/-1"><label>Donor Photo (optional)</label>
+          <input value="${escapeHtml(d.photoUrl||'')}" placeholder="Paste image URL OR upload below" onchange="updateDonor('${id}',{photoUrl:this.value}); renderDonorDetail('${id}')"/>
+          <input type="file" accept="image/*" style="margin-top:8px;font-size:13px" onchange="uploadDonorPhoto('${id}', this)"/>
+          ${d.photoData ? `<div style="margin-top:10px"><img src="${d.photoData}" style="max-width:180px;border-radius:8px;border:1px solid var(--border)"/><div><button class="btn btn-ghost" style="font-size:11px;margin-top:4px" onclick="updateDonor('${id}',{photoData:''}); renderDonorDetail('${id}')">Remove uploaded image</button></div></div>` : (d.photoUrl ? `<div style="margin-top:10px"><img src="${escapeHtml(d.photoUrl)}" style="max-width:180px;border-radius:8px;border:1px solid var(--border)" onerror="this.style.display='none'"/></div>` : '')}
+        </div>
         <div class="field" style="grid-column:1/-1"><label>Notes</label><textarea onchange="updateDonor('${id}',{notes:this.value})">${escapeHtml(d.notes||'')}</textarea></div>
       </div>
     </div>
